@@ -9,3 +9,6 @@ The Queue being a FIFO structure allows cities to be added level by level, start
 
 Phase 3-
 The main difference as far as data structures used is BFS uses a Queue, and DFS uses a stack, This allows BFS to vist all close by nodes first while DFS goes deep before backtracking to other closeby nodes.
+
+Phase 4-
+Tested edge cases with no issues poping up.
