@@ -18,8 +18,12 @@ public class Main {
         graph.addEdge("Los Angeles", "Seattle", 1135);
         graph.addEdge("Los Angeles", "Miami", 2340);
 
-        System.out.println("NY to LA: " + graph.hasPath("New York", "Los Angeles"));
+        System.out.println("BFS - New York to Los Angeles: " + graph.hasPath("New York", "Los Angeles"));
 
-        System.out.println("NY to Miami: " + graph.hasPath("New York", "Miami"));
+        System.out.println("DFS - New York to Los Angeles: " + graph.hasPathDFS("New York", "Los Angeles"));
+
+        System.out.println("BFS - New York to Miami: " + graph.hasPath("New York", "Miami"));
+
+        System.out.println("DFS - New York to Miami: " + graph.hasPathDFS("New York", "Miami"));
     }
 }

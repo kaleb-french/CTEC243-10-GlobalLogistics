@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class WeightedGraph<T> {
     //f
@@ -20,6 +21,7 @@ public class WeightedGraph<T> {
 
         numVertices = 0;
     }
+    //m
     public void addVertex(T vertex) {
         if (numVertices >= edges.length) {
             throw new IllegalStateException("Graph is full");
@@ -51,7 +53,6 @@ public class WeightedGraph<T> {
         int startIndex = indexOf(startVertex);
         int endIndex = indexOf(endVertex);
 
-        // Make sure both vertices exist
         if (startIndex == -1 || endIndex == -1) {
             throw new IllegalArgumentException("Vertex not found");
         }
@@ -77,6 +78,36 @@ public class WeightedGraph<T> {
             }
         }
 
+        return false;
+    }
+    public boolean hasPathDFS(T startVertex, T endVertex) {
+        int startIndex = indexOf(startVertex);
+        int endIndex = indexOf(endVertex);
+
+        if (startIndex == -1 || endIndex == -1) {
+            throw new IllegalArgumentException("Vertex not found");
+        }
+
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[numVertices];
+
+        stack.push(startIndex);
+        visited[startIndex] = true;
+
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+
+            if (current == endIndex) {
+                return true;
+            }
+
+            for (int i = 0; i < numVertices; i++) {
+                if (edges[current][i] != -1 && !visited[i]) {
+                    visited[i] = true;
+                    stack.push(i);
+                }
+            }
+        }
         return false;
     }
 }
