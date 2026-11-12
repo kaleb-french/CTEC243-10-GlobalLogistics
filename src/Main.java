@@ -17,5 +17,9 @@ public class Main {
         graph.addEdge("Denver", "Seattle", 1300);
         graph.addEdge("Los Angeles", "Seattle", 1135);
         graph.addEdge("Los Angeles", "Miami", 2340);
+
+        System.out.println("NY to LA: " + graph.hasPath("New York", "Los Angeles"));
+
+        System.out.println("NY to Miami: " + graph.hasPath("New York", "Miami"));
     }
 }

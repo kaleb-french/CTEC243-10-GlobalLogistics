@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class WeightedGraph<T> {
     //f
@@ -32,7 +34,6 @@ public class WeightedGraph<T> {
                 return i;
             }
         }
-
         return -1;
     }
     public void addEdge(T source, T destination, int weight) {
@@ -45,5 +46,37 @@ public class WeightedGraph<T> {
 
         edges[sourceIndex][destinationIndex] = weight;
         edges[destinationIndex][sourceIndex] = weight;
+    }
+    public boolean hasPath(T startVertex, T endVertex) {
+        int startIndex = indexOf(startVertex);
+        int endIndex = indexOf(endVertex);
+
+        // Make sure both vertices exist
+        if (startIndex == -1 || endIndex == -1) {
+            throw new IllegalArgumentException("Vertex not found");
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[numVertices];
+
+        queue.add(startIndex);
+        visited[startIndex] = true;
+
+        while (!queue.isEmpty()) {
+            int current = queue.remove();
+
+            if (current == endIndex) {
+                return true;
+            }
+
+            for (int i = 0; i < numVertices; i++) {
+                if (edges[current][i] != -1 && !visited[i]) {
+                    visited[i] = true;
+                    queue.add(i);
+                }
+            }
+        }
+
+        return false;
     }
 }
